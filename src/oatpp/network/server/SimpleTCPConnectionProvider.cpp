@@ -38,6 +38,9 @@
   #include <sys/socket.h>
   #include <netinet/tcp.h>
   #include <unistd.h>
+  #if defined(__FreeBSD__) 
+    #include <netinet/in.h>
+  #endif
 #endif
 
 namespace oatpp { namespace network { namespace server {
@@ -65,7 +68,7 @@ oatpp::data::stream::Context& SimpleTCPConnectionProvider::ExtendedConnection::g
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SimpleTCPConnectionProvider
 
-SimpleTCPConnectionProvider::SimpleTCPConnectionProvider(v_word16 port, bool useExtendedConnections)
+SimpleTCPConnectionProvider::SimpleTCPConnectionProvider(v_uint16 port, bool useExtendedConnections)
   : m_port(port)
   , m_closed(false)
   , m_useExtendedConnections(useExtendedConnections)
