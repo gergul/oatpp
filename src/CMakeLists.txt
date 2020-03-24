@@ -17,7 +17,6 @@ add_library(oatpp
         oatpp/codegen/codegen_undef_ApiClient_.hpp
         oatpp/codegen/codegen_undef_ApiController_.hpp
         oatpp/codegen/codegen_undef_DTO_.hpp
-        oatpp/core/Types.cpp
         oatpp/core/Types.hpp
         oatpp/core/async/Coroutine.cpp
         oatpp/core/async/Coroutine.hpp
@@ -249,7 +248,11 @@ if(MSVC)
 elseif(APPLE)
     target_link_libraries(oatpp PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 else(MSVC)
-    target_link_libraries(oatpp PUBLIC ${CMAKE_THREAD_LIBS_INIT} atomic)
+    if(${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
+        target_link_libraries(oatpp PUBLIC ${CMAKE_THREAD_LIBS_INIT})
+    else(${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
+        target_link_libraries(oatpp PUBLIC ${CMAKE_THREAD_LIBS_INIT} atomic)
+    endif(${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
 endif(MSVC)
 
 target_include_directories(oatpp PUBLIC
