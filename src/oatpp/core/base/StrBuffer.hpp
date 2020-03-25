@@ -176,13 +176,13 @@ public:
    * Get pointer to data of the buffer as `const* char`.
    * @return - pointer to data of the buffer.
    */
-  const char* c_str() const;
+  const char* c_str(const char* def = "") const;
 
   /**
    * Get copy of the buffer data as `std::string`.
    * @return - copy of the buffer data as `std::string`.
    */
-  std::string std_str() const;
+  std::string std_str(const std::string& def="") const;
 
   /**
    * Is this object is responsible for freeing buffer data.

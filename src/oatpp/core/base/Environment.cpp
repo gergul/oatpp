@@ -150,9 +150,13 @@ void Environment::init(const std::shared_ptr<Logger>& logger) {
 }
 
 void Environment::destroy(){
+#if 0
   if(m_components.size() > 0) {
     throw std::runtime_error("[oatpp::base::Environment::destroy()]: Error. Invalid state. Leaking components");
   }
+#else
+	m_components.clear();
+#endif
   m_logger.reset();
 
 #if defined(WIN32) || defined(_WIN32)

@@ -266,6 +266,7 @@ public:
    * @return - value.
    */
   ValueType getValue() {
+	if (!this) return ValueType();
     return m_value;
   }
   

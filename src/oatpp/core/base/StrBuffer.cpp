@@ -140,11 +140,13 @@ v_buff_size StrBuffer::getSize() const {
   return m_size;
 }
 
-const char* StrBuffer::c_str() const {
+const char* StrBuffer::c_str(const char* def/* = ""*/) const {
+  if (!this || !m_data) return NULL;
   return (const char*) m_data;
 }
   
-std::string StrBuffer::std_str() const {
+std::string StrBuffer::std_str(const std::string& def/* = ""*/) const {
+  if (!this || !m_data) return "";
   return std::string((const char*) m_data, m_size);
 }
   
